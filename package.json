@@ -9,6 +9,9 @@
   "author": "WebDesign Master",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "gulp-babel": "^7.0.1",
     "browser-sync": "^2.24.4",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
