@@ -12,7 +12,8 @@ var gulp           = require('gulp'),
 		autoprefixer   = require('gulp-autoprefixer'),
 		ftp            = require('vinyl-ftp'),
 		notify         = require("gulp-notify"),
-		rsync          = require('gulp-rsync');
+		rsync          = require('gulp-rsync')
+		babel        = require('gulp-babel');
 
 	gulp.task('browser-sync', function() {
 		browserSync({
@@ -31,8 +32,11 @@ gulp.task('common-js', function() {
 	return gulp.src([
 		'app/js/common.js',
 		])
+	.pipe(babel({
+		"presets": ["env"]
+	})) // Сжимаем JS файл
 	.pipe(concat('common.min.js'))
-	.pipe(uglify())
+	// .pipe(uglify())
 	.pipe(gulp.dest('app/js'));
 });
 
