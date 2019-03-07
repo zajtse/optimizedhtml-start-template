@@ -28,24 +28,24 @@ var gulp           = require('gulp'),
 
 // Пользовательские скрипты проекта
 
-gulp.task('common-js', function() {
+gulp.task('main-js', function() {
 	return gulp.src([
-		'app/js/common.js',
+		'app/js/main.js',
 		])
 	.pipe(babel({
 		"presets": ["env"]
 	})) // Сжимаем JS файл
-	.pipe(concat('common.min.js'))
+	.pipe(concat('main.min.js'))
 	// .pipe(uglify())
 	.pipe(gulp.dest('app/js'));
 });
 
-gulp.task('js', ['common-js'], function() {
+gulp.task('js', ['main-js'], function() {
 	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js',
-		'app/js/common.min.js', // Всегда в конце
+        'app/libs/jquery/dist/jquery.min.js',
+        'app/libs/jquery-mask-plugin/dist/jquery.mask.min.js',
 		])
-	.pipe(concat('scripts.min.js'))
+	.pipe(concat('libs.min.js'))
 	// .pipe(uglify()) // Минимизировать весь js (на выбор)
 	.pipe(gulp.dest('app/js'))
 	.pipe(browserSync.reload({ stream: true }));
@@ -63,7 +63,7 @@ gulp.task('sass', function() {
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.sass', ['sass']);
-	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
+	gulp.watch(['libs/**/*.js', 'app/js/main.js'], ['js']);
 	gulp.watch('app/*.html', browserSync.reload);
 });
 

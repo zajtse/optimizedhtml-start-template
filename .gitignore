@@ -1,3 +1,5 @@
+/.idea
+/.editor
 /node_modules/
 /dist/
 /.git/
